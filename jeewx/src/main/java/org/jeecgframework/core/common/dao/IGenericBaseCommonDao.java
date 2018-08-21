@@ -126,6 +126,16 @@ public interface IGenericBaseCommonDao {
 	 * @return
 	 */
 	public <T> List<T> findByQueryString(String hql);
+	
+	
+	/**
+	 * 通过分页查询对象
+	 * @param query
+	 * @param first
+	 * @param max
+	 * @return
+	 */
+	public <T> List<T> findByQueryString( String query, int first, int max) ;
 
 	/**
 	 * 通过hql查询唯一对象

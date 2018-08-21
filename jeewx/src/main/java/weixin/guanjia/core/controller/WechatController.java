@@ -53,9 +53,11 @@ public class WechatController {
 	public void wechatPost(HttpServletResponse response,
 			HttpServletRequest request) throws IOException {
 		String respMessage = wechatService.coreService(request);
-		PrintWriter out = response.getWriter();
-		out.print(respMessage);
-		out.close();
+		if(respMessage!=null){
+			PrintWriter out = response.getWriter();
+			out.print(respMessage);
+			out.close();
+			}
 	}
 
 }

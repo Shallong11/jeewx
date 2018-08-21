@@ -94,7 +94,7 @@ public class WechatService {
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 			textMessage.setContent(getMainMenu());
 			// 将文本消息对象转换成xml字符串
-			respMessage = MessageUtil.textMessageToXml(textMessage);
+			//respMessage = MessageUtil.textMessageToXml(textMessage); 没有查找到内容时不返回信息
 			//【微信触发类型】文本消息
 			if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
 				LogUtil.info("------------微信客户端发送请求------------------【微信触发类型】文本消息---");
@@ -279,6 +279,10 @@ public class WechatService {
 						}
 					}
 				}
+			}else{
+				KeyServiceI keyService = (KeyServiceI) Class.forName("com.buss.ctm.service.impl.DevelopServiceI").newInstance();
+				respMessage = keyService.excute(content,textMessage, request);
+				
 			}
 
 		}

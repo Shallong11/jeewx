@@ -344,6 +344,28 @@ public abstract class GenericBaseCommonDao<T, PK extends Serializable>
 
 	}
 
+	
+	/**
+	 * 分页查询结果
+	 * 
+	 * @param <T>
+	 * @param query
+	 * @return
+	 */
+	public List<T> findByQueryString(final String query,final int first,final int max) {
+
+		Query queryObject = getSession().createQuery(query);
+		queryObject.setFirstResult(first);
+		queryObject.setMaxResults(max);
+		List<T> list = queryObject.list();
+		if (list.size() > 0) {
+			getSession().flush();
+		}
+		return list;
+
+	}
+
+	
 	/**
 	 * 通过hql查询唯一对象
 	 * 
