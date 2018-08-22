@@ -2,9 +2,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jeecgframework</groupId>
-    <version>3.1.0</version>
+    <version>3.1.0-SNAPSHOT</version>
     <artifactId>jeewx-os</artifactId>
-    <packaging>war</packaging>
+    <!-- atomtree 修改 加上profiles ，可以根据需要选择发布war包还是jar包-->
+    <!-- 构建时，maven命令分别加profile进行编译，需要编译提交war时，加上webapp,需要编译提交jar时，加上batch-->
+    <packaging>${packaging.type}</packaging>
+    <profiles>
+        <profile>
+            <id>webapp</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <packaging.type>war</packaging.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>batch</id>
+            <properties>
+                <packaging.type>jar</packaging.type>
+            </properties>
+        </profile>
+    </profiles>
     <properties>
         <minidao.version>1.6.7</minidao.version>
         <jeewx-api.version>1.2.0-SNAPSHOT</jeewx-api.version>
