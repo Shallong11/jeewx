@@ -810,6 +810,7 @@
             <type>jar</type>
         </dependency>
         <!-- jeecg plugin -->
+
     </dependencies>
 
     <organization>
