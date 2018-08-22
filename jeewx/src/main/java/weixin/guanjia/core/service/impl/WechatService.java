@@ -259,11 +259,11 @@ public class WechatService {
 			}
 		} else {
 			// Step.2  通过微信扩展接口（支持二次开发，例如：翻译，天气）
-			LogUtil.info("------------微信客户端发送请求--------------Step.2  通过微信扩展接口（支持二次开发，例如：翻译，天气）---");
+			LogUtil.info("------------微信客户端发送请求--------------Step.2  通过微信扩展接口（支持二次开发，例如：翻译，天气1）---");
 			List<WeixinExpandconfigEntity> weixinExpandconfigEntityLst = weixinExpandconfigService.findByQueryString("FROM WeixinExpandconfigEntity");
 			if (weixinExpandconfigEntityLst.size() != 0) {
+				boolean findflag = false;// 是否找到关键字信息
 				for (WeixinExpandconfigEntity wec : weixinExpandconfigEntityLst) {
-					boolean findflag = false;// 是否找到关键字信息
 					// 如果已经找到关键字并处理业务，结束循环。
 					if (findflag) {
 						break;// 如果找到结束循环
@@ -279,12 +279,13 @@ public class WechatService {
 						}
 					}
 				}
-			}else{
-				KeyServiceI keyService = (KeyServiceI) Class.forName("com.buss.ctm.service.impl.DevelopServiceI").newInstance();
-				respMessage = keyService.excute(content,textMessage, request);
+				
+				if(!findflag){
+					KeyServiceI keyService = (KeyServiceI) Class.forName("com.buss.ctm.service.impl.DevelopServiceI").newInstance();
+					respMessage = keyService.excute(content,textMessage, request);
+				}
 				
 			}
-
 		}
 		return respMessage;
 	}
