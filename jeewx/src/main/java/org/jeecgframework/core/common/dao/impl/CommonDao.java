@@ -27,7 +27,6 @@ import org.jeecgframework.web.system.pojo.base.TSOperation;
 import org.jeecgframework.web.system.pojo.base.TSRoleFunction;
 import org.jeecgframework.web.system.pojo.base.TSRoleUser;
 import org.jeecgframework.web.system.pojo.base.TSUser;
-
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -600,4 +599,6 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 		}
 		return treegrid;
 	}
+
+
 }
